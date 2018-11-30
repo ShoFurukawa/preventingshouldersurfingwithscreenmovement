@@ -13,8 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //EditTextでキーボード入力が出ないようにした
-        //val editText: EditText = findViewById(R.id.editText)
         editText.keyListener = null
+
+
         editText.width = 200
 
         //数字ごとの処理
@@ -28,13 +29,12 @@ class MainActivity : AppCompatActivity() {
         eight.setOnClickListener { addStr("8") }
         nine.setOnClickListener { addStr("9") }
         zero.setOnClickListener { addStr("0") }
-
+        //数字の削除処理
+        backspace.setOnClickListener { deleteStr() }
     }
 
     //数字を押したときの処理
     private fun addStr(str: String) {
-        // TextViewを取得
-        //val textView = findViewById<View>(R.id.text) as TextView
         // Editableインスタンス取得
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         val textlength = editable.length
@@ -43,4 +43,16 @@ class MainActivity : AppCompatActivity() {
         editText.setText(editable, TextView.BufferType.EDITABLE)
     }
 
+    //EditTextの一番後ろの数字を削除
+    private fun deleteStr() {
+        // Editableインスタンス取得
+        val editable = Editable.Factory.getInstance().newEditable(editText.text)
+        // ボタンを押すごとに先頭1文字を削除
+        val textlength = editable.length
+        if (textlength > 0) {
+            editable.delete(textlength - 1, textlength)
+        }
+        // TextViewにセットする
+        editText.setText(editable, TextView.BufferType.EDITABLE)
+    }
 }
