@@ -12,10 +12,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
 
-
+        //editTextの幅を設定(pixel)
         editText.width = 200
 
         //数字ごとの処理
