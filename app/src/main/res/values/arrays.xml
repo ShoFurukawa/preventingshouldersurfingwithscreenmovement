@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="randomnumber">
+
+        <item>@drawable/number_0</item>
+
+        <item>@drawable/number_1</item>
+
+        <item>@drawable/number_2</item>
+
+        <item>@drawable/number_3</item>
+
+        <item>@drawable/number_4</item>
+
+        <item>@drawable/number_5</item>
+
+        <item>@drawable/number_6</item>
+
+        <item>@drawable/number_7</item>
+
+        <item>@drawable/number_8</item>
+
+        <item>@drawable/number_9</item>
+
+    </array>
+</resources>

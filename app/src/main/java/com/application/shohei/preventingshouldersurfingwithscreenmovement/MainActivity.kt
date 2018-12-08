@@ -5,6 +5,9 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.TextView
 import android.text.Editable
+import android.R.array
+import android.content.res.TypedArray
+import android.graphics.drawable.Drawable
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //SetPasswordActivityのeditTextの内容を受け取る
+        val password =intent.getIntExtra("password",0)
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
@@ -32,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         zero.setOnClickListener { addStr("0") }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
+        val typedArray = resources.obtainTypedArray(R.array.randomnumber)
+        val rand = Math.floor(Math.random() * 10).toInt()
+        val drawable = typedArray.getDrawable(rand)
+        randompath.setImageDrawable(drawable)
     }
 
     //数字を押したときの処理

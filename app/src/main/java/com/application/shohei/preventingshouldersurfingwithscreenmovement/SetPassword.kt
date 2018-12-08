@@ -3,6 +3,7 @@ package com.application.shohei.preventingshouldersurfingwithscreenmovement
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.view.View
 import android.widget.TextView
@@ -60,7 +61,20 @@ class SetPassword : AppCompatActivity() {
     }
 
     private fun onOkButtonTapped(view: View?) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        val editable = Editable.Factory.getInstance().newEditable(editText.text)
+        val textlength = editable.length
+        if(textlength!=4){
+            AlertDialog.Builder(this)
+                    .setTitle("警告")
+                    .setMessage("4桁のパスワードを入力してください")
+                    .setPositiveButton("YES",null)
+                    .show()
+        }else {
+            val intent = Intent(this, MainActivity::class.java)
+            //editTextの内容をMainActivityに送る
+            intent.putExtra("password",Integer.parseInt(editText.text.toString()))
+            startActivity(intent)
+        }
     }
 }
+
