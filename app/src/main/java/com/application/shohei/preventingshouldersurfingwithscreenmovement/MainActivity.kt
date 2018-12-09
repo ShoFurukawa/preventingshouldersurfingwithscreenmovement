@@ -5,9 +5,6 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.TextView
 import android.text.Editable
-import android.R.array
-import android.content.res.TypedArray
-import android.graphics.drawable.Drawable
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //SetPasswordActivityのeditTextの内容を受け取る
-        val password =intent.getIntExtra("password",0)
+        val password = intent.getIntExtra("password", 0)
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
@@ -24,23 +21,51 @@ class MainActivity : AppCompatActivity() {
         //editTextの幅を設定(pixel)
         editText.width = 200
 
+
         //数字ごとの処理
-        one.setOnClickListener { addStr("1") }
-        two.setOnClickListener { addStr("2") }
-        three.setOnClickListener { addStr("3") }
-        four.setOnClickListener { addStr("4") }
-        five.setOnClickListener { addStr("5") }
-        six.setOnClickListener { addStr("6") }
-        seven.setOnClickListener { addStr("7") }
-        eight.setOnClickListener { addStr("8") }
-        nine.setOnClickListener { addStr("9") }
-        zero.setOnClickListener { addStr("0") }
+        one.setOnClickListener {
+            addStr(inputNumberCalc(1, addNumber).toString())
+            randomImage()
+        }
+        two.setOnClickListener {
+            addStr(inputNumberCalc(2, addNumber).toString())
+            randomImage()
+        }
+        three.setOnClickListener {
+            addStr(inputNumberCalc(3, addNumber).toString())
+            randomImage()
+        }
+        four.setOnClickListener {
+            addStr(inputNumberCalc(4, addNumber).toString())
+            randomImage()
+        }
+        five.setOnClickListener {
+            addStr(inputNumberCalc(5, addNumber).toString())
+            randomImage()
+        }
+        six.setOnClickListener {
+            addStr(inputNumberCalc(6, addNumber).toString())
+            randomImage()
+        }
+        seven.setOnClickListener {
+            addStr(inputNumberCalc(7, addNumber).toString())
+            randomImage()
+        }
+        eight.setOnClickListener {
+            addStr(inputNumberCalc(8, addNumber).toString())
+            randomImage()
+        }
+        nine.setOnClickListener {
+            addStr(inputNumberCalc(9, addNumber).toString())
+            randomImage()
+        }
+        zero.setOnClickListener {
+            addStr(inputNumberCalc(0, addNumber).toString())
+            randomImage()
+        }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
-        val typedArray = resources.obtainTypedArray(R.array.randomnumber)
-        val rand = Math.floor(Math.random() * 10).toInt()
-        val drawable = typedArray.getDrawable(rand)
-        randompath.setImageDrawable(drawable)
+        randomImage()
     }
 
     //数字を押したときの処理
@@ -64,5 +89,24 @@ class MainActivity : AppCompatActivity() {
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+    }
+
+    private var addNumber: Int = 0
+    //ランダムな画像を表示させるための処理
+    private fun randomImage() {
+        val typedArray = resources.obtainTypedArray(R.array.randomnumber)
+        val rand = Math.floor(Math.random() * 10).toInt()
+        addNumber = rand
+        val drawable = typedArray.getDrawable(rand)
+        randompath.setImageDrawable(drawable)
+    }
+
+    //passwordの桁ごとの値を求める処理
+    private fun inputNumberCalc(calcNum: Int, addNum: Int): Int {
+        val x = calcNum - addNum
+        return if (x >= 0)
+            x
+        else
+            10 + x
     }
 }
