@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Result">
 
+    <TextView
+        android:id="@+id/resultLabel"
+        android:layout_width="192dp"
+        android:layout_height="44dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.169" />
 </android.support.constraint.ConstraintLayout>

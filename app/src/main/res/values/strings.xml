@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">preventing shouldersurfing with screen movement</string>
+    <string name="result_success">認証成功</string>
+    <string name="result_failed">認証失敗</string>
 </resources>

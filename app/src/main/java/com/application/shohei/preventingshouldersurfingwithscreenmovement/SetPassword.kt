@@ -14,6 +14,7 @@ class SetPassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_password)
+        title = ("パスワード設定")
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
@@ -63,16 +64,16 @@ class SetPassword : AppCompatActivity() {
     private fun onOkButtonTapped(view: View?) {
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         val textlength = editable.length
-        if(textlength!=4){
+        if (textlength != 4) {
             AlertDialog.Builder(this)
                     .setTitle("警告")
                     .setMessage("4桁のパスワードを入力してください")
-                    .setPositiveButton("YES",null)
+                    .setPositiveButton("YES", null)
                     .show()
-        }else {
+        } else {
             val intent = Intent(this, MainActivity::class.java)
             //editTextの内容をMainActivityに送る
-            intent.putExtra("password",Integer.parseInt(editText.text.toString()))
+            intent.putExtra("password", editText.text.toString())
             startActivity(intent)
         }
     }

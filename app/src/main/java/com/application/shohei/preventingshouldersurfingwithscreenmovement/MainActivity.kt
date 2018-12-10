@@ -1,7 +1,9 @@
 package com.application.shohei.preventingshouldersurfingwithscreenmovement
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.TextView
 import android.text.Editable
@@ -12,15 +14,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //SetPasswordActivityのeditTextの内容を受け取る
-        val password = intent.getIntExtra("password", 0)
+        title = ("認証")
+        //intentに格納されたデータを取り出す(onCreateの中に書かないと機能しない)
+        val password = intent.getStringExtra("password")
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
 
         //editTextの幅を設定(pixel)
         editText.width = 200
-
 
         //数字ごとの処理
         one.setOnClickListener {
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
+        ok.setOnClickListener { onOkButtonTapped(password) }
         randomImage()
     }
 
@@ -89,6 +92,27 @@ class MainActivity : AppCompatActivity() {
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+    }
+
+    //OKボタンがタップされた時の処理
+    private fun onOkButtonTapped(password: String) {
+        val editable = Editable.Factory.getInstance().newEditable(editText.text)
+        val textlength = editable.length
+        if (textlength != 4) {
+            AlertDialog.Builder(this)
+                    .setTitle("警告")
+                    .setMessage("4桁のパスワードを入力してください")
+                    .setPositiveButton("YES", null)
+                    .show()
+        } else {
+            val intent = Intent(this, Result::class.java)
+            //SetPasswordActivityのeditTextの内容を受け取る
+            if (password == editText.text.toString()) {
+                intent.putExtra("result", R.string.result_success)
+            } else
+                intent.putExtra("result", R.string.result_failed)
+            startActivity(intent)
+        }
     }
 
     private var addNumber: Int = 0
