@@ -9,15 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SetPassword">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SetPassword"></activity>
+        <activity android:name=".Result" />
+        <activity android:name=".Shuffle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Result"></activity>
+        <activity android:name=".ModeSelect"></activity>
     </application>
 
 </manifest>

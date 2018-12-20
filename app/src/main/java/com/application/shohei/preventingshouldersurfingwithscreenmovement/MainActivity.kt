@@ -1,6 +1,7 @@
 package com.application.shohei.preventingshouldersurfingwithscreenmovement
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //画面が回転しないようにする
+        requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         title = ("認証")
         //intentに格納されたデータを取り出す(onCreateの中に書かないと機能しない)
         val password = intent.getStringExtra("password")
@@ -75,8 +78,8 @@ class MainActivity : AppCompatActivity() {
     private fun addStr(str: String) {
         // Editableインスタンス取得
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
-        val textlength = editable.length
-        editable.insert(textlength, str)
+        val textLength = editable.length
+        editable.insert(textLength, str)
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
     }
@@ -86,9 +89,9 @@ class MainActivity : AppCompatActivity() {
         // Editableインスタンス取得
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         // ボタンを押すごとに先頭1文字を削除
-        val textlength = editable.length
-        if (textlength > 0) {
-            editable.delete(textlength - 1, textlength)
+        val textLength = editable.length
+        if (textLength > 0) {
+            editable.delete(textLength - 1, textLength)
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
@@ -97,8 +100,8 @@ class MainActivity : AppCompatActivity() {
     //OKボタンがタップされた時の処理
     private fun onOkButtonTapped(password: String) {
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
-        val textlength = editable.length
-        if (textlength != 4) {
+        val textLength = editable.length
+        if (textLength != 4) {
             AlertDialog.Builder(this)
                     .setTitle("警告")
                     .setMessage("4桁のパスワードを入力してください")

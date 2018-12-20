@@ -1,11 +1,11 @@
 package com.application.shohei.preventingshouldersurfingwithscreenmovement
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
-import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +14,8 @@ class SetPassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_password)
+        //画面が回転しないようにする
+        requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         title = ("パスワード設定")
 
         //EditTextでキーボード入力が出ないようにした
@@ -35,15 +37,15 @@ class SetPassword : AppCompatActivity() {
         zero.setOnClickListener { addStr("0") }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
-        ok.setOnClickListener { onOkButtonTapped(it) }
+        ok.setOnClickListener { onOkButtonTapped() }
     }
 
     //数字を押したときの処理
     private fun addStr(str: String) {
         // Editableインスタンス取得
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
-        val textlength = editable.length
-        editable.insert(textlength, str)
+        val textLength = editable.length
+        editable.insert(textLength, str)
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
     }
@@ -53,18 +55,18 @@ class SetPassword : AppCompatActivity() {
         // Editableインスタンス取得
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         // ボタンを押すごとに先頭1文字を削除
-        val textlength = editable.length
-        if (textlength > 0) {
-            editable.delete(textlength - 1, textlength)
+        val textLength = editable.length
+        if (textLength > 0) {
+            editable.delete(textLength - 1, textLength)
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
     }
 
-    private fun onOkButtonTapped(view: View?) {
+    private fun onOkButtonTapped() {
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
-        val textlength = editable.length
-        if (textlength != 4) {
+        val textLength = editable.length
+        if (textLength != 4) {
             AlertDialog.Builder(this)
                     .setTitle("警告")
                     .setMessage("4桁のパスワードを入力してください")
@@ -78,4 +80,3 @@ class SetPassword : AppCompatActivity() {
         }
     }
 }
-
