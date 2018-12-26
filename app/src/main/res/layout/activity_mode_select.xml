@@ -6,4 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ModeSelect">
 
+    <Button
+        android:id="@+id/pinbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pin"
+        app:layout_constraintBottom_toTopOf="@+id/addpinbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addpinbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_pin"
+        app:layout_constraintBottom_toTopOf="@+id/shakepinbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pinbutton" />
+
+    <Button
+        android:id="@+id/shakepinbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shake_pin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addpinbutton"
+        app:layout_constraintVertical_bias="0.075" />
 </android.support.constraint.ConstraintLayout>

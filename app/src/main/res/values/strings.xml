@@ -2,4 +2,7 @@
     <string name="app_name">preventing shouldersurfing with screen movement</string>
     <string name="result_success">認証成功</string>
     <string name="result_failed">認証失敗</string>
+    <string name="add_pin">加算型PIN</string>
+    <string name="shake_pin">シェイク型PIN</string>
+    <string name="pin">PIN</string>
 </resources>

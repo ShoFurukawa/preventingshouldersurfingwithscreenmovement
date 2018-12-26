@@ -8,16 +8,20 @@ import android.support.v7.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.TextView
 import android.text.Editable
+import android.view.View
 
 
 class MainActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val sTime = System.currentTimeMillis()
         //画面が回転しないようにする
-        requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         title = ("認証")
+
         //intentに格納されたデータを取り出す(onCreateの中に書かないと機能しない)
         val password = intent.getStringExtra("password")
 
@@ -27,7 +31,14 @@ class MainActivity : AppCompatActivity() {
         //editTextの幅を設定(pixel)
         editText.width = 200
 
+        //addTextの非表示化
+        addText.visibility = View.GONE
+
         //数字ごとの処理
+        zero.setOnClickListener {
+            addStr(inputNumberCalc(0, addNumber).toString())
+            randomImage()
+        }
         one.setOnClickListener {
             addStr(inputNumberCalc(1, addNumber).toString())
             randomImage()
@@ -64,13 +75,9 @@ class MainActivity : AppCompatActivity() {
             addStr(inputNumberCalc(9, addNumber).toString())
             randomImage()
         }
-        zero.setOnClickListener {
-            addStr(inputNumberCalc(0, addNumber).toString())
-            randomImage()
-        }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
-        ok.setOnClickListener { onOkButtonTapped(password) }
+        ok.setOnClickListener { onOkButtonTapped(password, sTime) }
         randomImage()
     }
 
@@ -82,6 +89,13 @@ class MainActivity : AppCompatActivity() {
         editable.insert(textLength, str)
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+
+        // Editableインスタンス取得
+        val editableAdd=Editable.Factory.getInstance().newEditable(addText.text)
+        val addTextLength = editableAdd.length
+        editableAdd.insert(addTextLength, addNumber.toString())
+        // TextViewにセットする
+        addText.setText(editableAdd, TextView.BufferType.EDITABLE)
     }
 
     //EditTextの一番後ろの数字を削除
@@ -95,10 +109,23 @@ class MainActivity : AppCompatActivity() {
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+
+        // Editableインスタンス取得
+        val editableAdd = Editable.Factory.getInstance().newEditable(addText.text)
+        // ボタンを押すごとに先頭1文字を削除
+        val addTextLength = editableAdd.length
+        if (addTextLength > 0) {
+            editableAdd.delete(addTextLength - 1, addTextLength)
+        }
+        // TextViewにセットする
+        addText.setText(editableAdd, TextView.BufferType.EDITABLE)
+
+        randomImage()
     }
 
     //OKボタンがタップされた時の処理
-    private fun onOkButtonTapped(password: String) {
+    private fun onOkButtonTapped(password: String, sTime: Long) {
+        val dTime = System.currentTimeMillis() - sTime
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         val textLength = editable.length
         if (textLength != 4) {
@@ -114,6 +141,9 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("result", R.string.result_success)
             } else
                 intent.putExtra("result", R.string.result_failed)
+
+            intent.putExtra("dTime", dTime)
+            intent.putExtra("addNum",addText.text.toString())
             startActivity(intent)
         }
     }

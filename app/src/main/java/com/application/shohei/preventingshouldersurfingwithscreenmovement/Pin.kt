@@ -9,14 +9,18 @@ import android.text.Editable
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class SetPassword : AppCompatActivity() {
+class Pin : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_set_password)
+        setContentView(R.layout.activity_pin)
+        val sTime = System.currentTimeMillis()
         //画面が回転しないようにする
-        requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        title = ("パスワード設定")
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        title = ("認証")
+
+        //intentに格納されたデータを取り出す(onCreateの中に書かないと機能しない)
+        val password = intent.getStringExtra("password")
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
@@ -25,19 +29,39 @@ class SetPassword : AppCompatActivity() {
         editText.width = 200
 
         //数字ごとの処理
-        one.setOnClickListener { addStr("1") }
-        two.setOnClickListener { addStr("2") }
-        three.setOnClickListener { addStr("3") }
-        four.setOnClickListener { addStr("4") }
-        five.setOnClickListener { addStr("5") }
-        six.setOnClickListener { addStr("6") }
-        seven.setOnClickListener { addStr("7") }
-        eight.setOnClickListener { addStr("8") }
-        nine.setOnClickListener { addStr("9") }
-        zero.setOnClickListener { addStr("0") }
+        zero.setOnClickListener {
+            addStr("0")
+        }
+        one.setOnClickListener {
+            addStr("1")
+        }
+        two.setOnClickListener {
+            addStr("2")
+        }
+        three.setOnClickListener {
+            addStr("3")
+        }
+        four.setOnClickListener {
+            addStr("4")
+        }
+        five.setOnClickListener {
+            addStr("5")
+        }
+        six.setOnClickListener {
+            addStr("6")
+        }
+        seven.setOnClickListener {
+            addStr("7")
+        }
+        eight.setOnClickListener {
+            addStr("8")
+        }
+        nine.setOnClickListener {
+            addStr("9")
+        }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
-        ok.setOnClickListener { onOkButtonTapped() }
+        ok.setOnClickListener { onOkButtonTapped(password,sTime) }
     }
 
     //数字を押したときの処理
@@ -63,7 +87,9 @@ class SetPassword : AppCompatActivity() {
         editText.setText(editable, TextView.BufferType.EDITABLE)
     }
 
-    private fun onOkButtonTapped() {
+    //OKボタンがタップされた時の処理
+    private fun onOkButtonTapped(password: String, sTime: Long) {
+        val dTime= System.currentTimeMillis() - sTime
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         val textLength = editable.length
         if (textLength != 4) {
@@ -73,9 +99,14 @@ class SetPassword : AppCompatActivity() {
                     .setPositiveButton("YES", null)
                     .show()
         } else {
-            val intent = Intent(this, ModeSelect::class.java)
-            //editTextの内容をMainActivityに送る
-            intent.putExtra("password", editText.text.toString())
+            val intent = Intent(this, Result::class.java)
+            //SetPasswordActivityのeditTextの内容を受け取る
+            if (password == editText.text.toString()) {
+                intent.putExtra("result", R.string.result_success)
+            } else
+                intent.putExtra("result", R.string.result_failed)
+
+            intent.putExtra("dTime",dTime)
             startActivity(intent)
         }
     }

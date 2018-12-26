@@ -10,16 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".SetPassword"></activity>
-        <activity android:name=".Result" />
-        <activity android:name=".Shuffle">
+        <activity android:name=".SetPassword">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ModeSelect"></activity>
+        <activity android:name=".Result" />
+        <activity android:name=".Shake" />
+        <activity android:name=".ModeSelect" />
+        <activity android:name=".Pin"></activity>
     </application>
 
 </manifest>

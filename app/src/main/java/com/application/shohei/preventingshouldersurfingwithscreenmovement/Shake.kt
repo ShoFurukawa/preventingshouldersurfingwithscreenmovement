@@ -10,25 +10,25 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.util.Log
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class Shuffle : AppCompatActivity(), SensorEventListener {
+class Shake : AppCompatActivity(), SensorEventListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shuffle)
+        setContentView(R.layout.activity_shake)
+        val sTime = System.currentTimeMillis()
         //画面が回転しないようにする
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         title = ("認証")
         //intentに格納されたデータを取り出す(onCreateの中に書かないと機能しない)
-        //val password = intent.getStringExtra("password")
+        val password = intent.getStringExtra("password")
 
         //EditTextでキーボード入力が出ないようにした
         editText.keyListener = null
@@ -36,8 +36,15 @@ class Shuffle : AppCompatActivity(), SensorEventListener {
         //editTextの幅を設定(pixel)
         editText.width = 200
 
+        //addTextの非表示化
+        addText.visibility = View.GONE
+
 
         //数字ごとの処理
+        zero.setOnClickListener {
+            addStr(inputNumberCalc(0, addNumber).toString())
+            imageData = randomImage()
+        }
         one.setOnClickListener {
             addStr(inputNumberCalc(1, addNumber).toString())
             // addStr("1")
@@ -75,13 +82,9 @@ class Shuffle : AppCompatActivity(), SensorEventListener {
             addStr(inputNumberCalc(9, addNumber).toString())
             imageData = randomImage()
         }
-        zero.setOnClickListener {
-            addStr(inputNumberCalc(0, addNumber).toString())
-            imageData = randomImage()
-        }
         //数字の削除処理
         backspace.setOnClickListener { deleteStr() }
-        //ok.setOnClickListener { onOkButtonTapped(password) }
+        ok.setOnClickListener { onOkButtonTapped(password, sTime) }
         imageData = randomImage()
         randompath.setImageDrawable(imageData)
     }
@@ -146,21 +149,21 @@ private var n=0*/
             //x方向10~50
             //if ((10 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
 
-                //x方向20~50
-                //if ((20 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
+            //x方向20~50
+            //if ((20 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
 
-                //x方向30~50
-                //if ((30 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
+            //x方向30~50
+            //if ((30 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
 
-                //x方向40~50
-                //if ((40 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
+            //x方向40~50
+            //if ((40 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
 
 
-                //y方向10~50
-                //if ((10 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
+            //y方向10~50
+            //if ((10 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
 
-                //y方向20~50
-                if ((20 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
+            //y方向20~50
+            if ((20 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
 
                 //y方向30~50
                 //if ((30 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
@@ -173,7 +176,7 @@ private var n=0*/
                 //if ((10 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
 
                 //z方向20~50
-                   // if ((20 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
+                // if ((20 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
 
                 //z方向30~50
                 //if ((30 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
@@ -188,7 +191,7 @@ private var n=0*/
 
                 //if(true){
 
-                /* Log.d("Shuffle",
+                /* Log.d("Shake",
                          "x=${event.values[0].toString()}" +
                                  "y=${event.values[1].toString()}" +
                                  "z=${event.values[2].toString()}")*/
@@ -215,6 +218,13 @@ private var n=0*/
         editable.insert(textLength, str)
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+
+        // Editableインスタンス取得
+        val editableAdd=Editable.Factory.getInstance().newEditable(addText.text)
+        val addTextLength = editableAdd.length
+        editableAdd.insert(addTextLength, addNumber.toString())
+        // TextViewにセットする
+        addText.setText(editableAdd, TextView.BufferType.EDITABLE)
     }
 
     //EditTextの一番後ろの数字を削除
@@ -228,10 +238,23 @@ private var n=0*/
         }
         // TextViewにセットする
         editText.setText(editable, TextView.BufferType.EDITABLE)
+
+        // Editableインスタンス取得
+        val editableAdd = Editable.Factory.getInstance().newEditable(addText.text)
+        // ボタンを押すごとに先頭1文字を削除
+        val addTextLength = editableAdd.length
+        if (addTextLength > 0) {
+            editableAdd.delete(addTextLength - 1, addTextLength)
+        }
+        // TextViewにセットする
+        addText.setText(editableAdd, TextView.BufferType.EDITABLE)
+
+        imageData = randomImage()
     }
 
     //OKボタンがタップされた時の処理
-    private fun onOkButtonTapped(password: String) {
+    private fun onOkButtonTapped(password: String, sTime: Long) {
+        val dTime = System.currentTimeMillis() - sTime
         val editable = Editable.Factory.getInstance().newEditable(editText.text)
         val textLength = editable.length
         if (textLength != 4) {
@@ -241,13 +264,16 @@ private var n=0*/
                     .setPositiveButton("YES", null)
                     .show()
         } else {
-            /*   val intent = Intent(this, Result::class.java)
-               //SetPasswordActivityのeditTextの内容を受け取る
-               if (password == editText.text.toString()) {
-                   intent.putExtra("result", R.string.result_success)
-               } else
-                   intent.putExtra("result", R.string.result_failed)
-               startActivity(intent)*/
+            val intent = Intent(this, Result::class.java)
+            //SetPasswordActivityのeditTextの内容を受け取る
+            if (password == editText.text.toString()) {
+                intent.putExtra("result", R.string.result_success)
+            } else
+                intent.putExtra("result", R.string.result_failed)
+
+            intent.putExtra("dTime", dTime)
+            intent.putExtra("addNum",addText.text.toString())
+            startActivity(intent)
         }
     }
 
