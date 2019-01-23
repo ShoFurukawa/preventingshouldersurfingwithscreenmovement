@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AddPin">
 
     <ImageButton
         android:id="@+id/one"
@@ -157,7 +157,7 @@
         android:layout_width="167dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:maxLength="4"
         app:layout_constraintBottom_toTopOf="@+id/one"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +199,8 @@
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:scaleType="center"
+        android:background="@null"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_add_pin.*
 
 class Pin : AppCompatActivity() {
 

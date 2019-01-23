@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_mode_select.*
 
 class ModeSelect : AppCompatActivity() {
@@ -31,14 +30,15 @@ class ModeSelect : AppCompatActivity() {
     }
 
     fun onAddPinButtonTapped(password: String) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, AddPin::class.java)
         intent.putExtra("password", password)
         startActivity(intent)
     }
 
     fun onShakePinButtonTapped(password: String) {
-        val intent = Intent(this, Shake::class.java)
+        val intent = Intent(this, Direction::class.java)
         intent.putExtra("password", password)
+
         startActivity(intent)
     }
 }

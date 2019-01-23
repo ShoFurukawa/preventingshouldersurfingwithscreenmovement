@@ -23,4 +23,109 @@
         <item>@drawable/number_9</item>
 
     </array>
+    <array name="segmentnumber">
+        <item>@drawable/segment_0</item>
+
+        <item>@drawable/segment_1</item>
+
+        <item>@drawable/segment_2</item>
+
+        <item>@drawable/segment_3</item>
+
+        <item>@drawable/segment_4</item>
+
+        <item>@drawable/segment_5</item>
+
+        <item>@drawable/segment_6</item>
+
+        <item>@drawable/segment_7</item>
+
+        <item>@drawable/segment_8</item>
+
+        <item>@drawable/segment_9</item>
+    </array>
+
+    <array name="clearnumber">
+        <item>@drawable/clear_0</item>
+
+        <item>@drawable/clear_1</item>
+
+        <item>@drawable/clear_2</item>
+
+        <item>@drawable/clear_3</item>
+
+        <item>@drawable/clear_4</item>
+
+        <item>@drawable/clear_5</item>
+
+        <item>@drawable/clear_6</item>
+
+        <item>@drawable/clear_7</item>
+
+        <item>@drawable/clear_8</item>
+
+        <item>@drawable/clear_9</item>
+    </array>
+
+    <array name="colornumber">
+        <item>@drawable/red_8</item>
+
+        <item>@drawable/red_81</item>
+
+        <item>@drawable/red_82</item>
+
+        <item>@drawable/red_8_0</item>
+
+        <item>@drawable/red_8_1</item>
+
+        <item>@drawable/red_8_2</item>
+
+        <item>@drawable/red_8_3</item>
+
+        <item>@drawable/red_8_4</item>
+    </array>
+
+    <array name="greenyellownumber">
+        <item>@drawable/green_yellow0</item>
+
+        <item>@drawable/green_yellow1</item>
+
+        <item>@drawable/green_yellow2</item>
+
+        <item>@drawable/green_yellow3</item>
+
+        <item>@drawable/green_yellow4</item>
+
+        <item>@drawable/green_yellow5</item>
+
+        <item>@drawable/green_yellow6</item>
+
+        <item>@drawable/green_yellow7</item>
+
+        <item>@drawable/green_yellow8</item>
+
+        <item>@drawable/green_yellow9</item>
+    </array>
+
+    <array name="greenc3number">
+        <item>@drawable/green_c3_0</item>
+
+        <item>@drawable/green_c3_1</item>
+
+        <item>@drawable/green_c3_2</item>
+
+        <item>@drawable/green_c3_3</item>
+
+        <item>@drawable/green_c3_4</item>
+
+        <item>@drawable/green_c3_5</item>
+
+        <item>@drawable/green_c3_6</item>
+
+        <item>@drawable/green_c3_7</item>
+
+        <item>@drawable/green_c3_8</item>
+
+        <item>@drawable/green_c3_9</item>
+    </array>
 </resources>

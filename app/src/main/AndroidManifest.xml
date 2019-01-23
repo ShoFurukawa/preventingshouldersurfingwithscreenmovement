@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".AddPin" />
         <activity android:name=".SetPassword">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,8 @@
         <activity android:name=".Result" />
         <activity android:name=".Shake" />
         <activity android:name=".ModeSelect" />
-        <activity android:name=".Pin"></activity>
+        <activity android:name=".Pin" />
+        <activity android:name=".Direction"></activity>
     </application>
 
 </manifest>

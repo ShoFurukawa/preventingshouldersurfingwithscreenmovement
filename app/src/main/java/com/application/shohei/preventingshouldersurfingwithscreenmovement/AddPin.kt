@@ -5,18 +5,18 @@ import android.content.pm.ActivityInfo
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_add_pin.*
 import android.widget.TextView
 import android.text.Editable
 import android.view.View
 
 
-class MainActivity : AppCompatActivity() {
+class AddPin : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_add_pin)
         val sTime = System.currentTimeMillis()
         //画面が回転しないようにする
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         editText.setText(editable, TextView.BufferType.EDITABLE)
 
         // Editableインスタンス取得
-        val editableAdd=Editable.Factory.getInstance().newEditable(addText.text)
+        val editableAdd = Editable.Factory.getInstance().newEditable(addText.text)
         val addTextLength = editableAdd.length
         editableAdd.insert(addTextLength, addNumber.toString())
         // TextViewにセットする
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("result", R.string.result_failed)
 
             intent.putExtra("dTime", dTime)
-            intent.putExtra("addNum",addText.text.toString())
+            intent.putExtra("addNum", addText.text.toString())
             startActivity(intent)
         }
     }
@@ -151,7 +151,8 @@ class MainActivity : AppCompatActivity() {
     private var addNumber: Int = 0
     //ランダムな画像を表示させるための処理
     private fun randomImage() {
-        val typedArray = resources.obtainTypedArray(R.array.randomnumber)
+        val typedArray = resources.obtainTypedArray(R.array.segmentnumber)
+        //val typedArray = resources.obtainTypedArray(R.array.cleranumber)
         val rand = Math.floor(Math.random() * 10).toInt()
         addNumber = rand
         val drawable = typedArray.getDrawable(rand)

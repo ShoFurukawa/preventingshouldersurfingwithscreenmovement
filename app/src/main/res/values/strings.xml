@@ -5,4 +5,7 @@
     <string name="add_pin">加算型PIN</string>
     <string name="shake_pin">シェイク型PIN</string>
     <string name="pin">PIN</string>
+    <string name="x_button">X方向</string>
+    <string name="y_button">Y方向</string>
+    <string name="z_button">Z方向</string>
 </resources>
