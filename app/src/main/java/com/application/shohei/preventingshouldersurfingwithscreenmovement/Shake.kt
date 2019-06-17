@@ -12,10 +12,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.text.Editable
-import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_add_pin.*
 
 class Shake : AppCompatActivity(), SensorEventListener {
@@ -135,30 +133,6 @@ private var n=0*/
 
         if (event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
             val direction = intent.getStringExtra("direction")
-            //  Toast.makeText(this, direction.toString(), Toast.LENGTH_SHORT).show()
-            /*val nNowTime = System.currentTimeMillis()
-            val nDiffTime = nNowTime - nBeforeTime
-            val x = event.values[0]
-            val y = event.values[1]
-            val z = event.values[2]
-            if (nDiffTime > 10 && (nBeforeTime != 0L)) {
-                /* var x = Math.abs(event.values[0])
-             var y = Math.abs(event.values[1])
-             var z = Math.abs(event.values[2])*/
-                val speed = (Math.abs(x - nBeforeX) + Math.abs(y - nBeforeY) ) / nDiffTime * 1000
-               Toast.makeText(this, x.toString(), Toast.LENGTH_SHORT).show()
-                if (Math.abs(x) > 20) {
-                    randompath.setImageDrawable(imageData)
-                    n++
-                    Toast.makeText(this, n.toString(), Toast.LENGTH_SHORT).show()
-                }
-                else
-                    randompath.setImageDrawable(null)
-            }
-            nBeforeTime = nNowTime
-            nBeforeX = x
-            nBeforeY = y
-            nBeforeZ = z*/
 
             when (direction) {
                 "x" -> {
@@ -179,72 +153,7 @@ private var n=0*/
                     else randompath.setImageDrawable(null)
                 }
             }
-            //x方向10~50
-            //if ((10 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
 
-            //x方向20~50
-            //if ((20 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
-
-            //x方向30~50
-            //if ((30 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
-
-            //x方向40~50
-            //if ((40 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 50)) {
-
-
-            //y方向10~50
-            //if ((10 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
-
-            //y方向20~50
-
-            //if ((20 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
-
-            //y方向30~50
-            //if ((30 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
-
-            // y方向40~50
-            //if ((40 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 50)) {
-
-
-            //z方向10~50
-            //if ((10 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
-
-            //z方向20~50
-            // if ((20 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
-
-            //if ((-50 < event.values[2] && event.values[2] < -15)) {
-
-            //z方向30~50
-            //if ((30 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
-
-            //z方向40~50
-            //if ((40 < Math.abs(event.values[2]) && Math.abs(event.values[2]) < 50)) {
-
-
-            //x方向20~30,y方向30~40
-            //if (event.values[2] < -100 || (20 < event.values[0] && event.values[0] < 30) || (-30 < event.values[0] && event.values[0] < -20) || (-40 < event.values[1]&& event.values[1]<-30)||(30 < event.values[1]&& event.values[1]<40)) {
-            //    if ((20 < Math.abs(event.values[0]) && Math.abs(event.values[0]) < 30) || (30 < Math.abs(event.values[1]) && Math.abs(event.values[1]) < 40)) {
-
-            //if(true){
-
-            Log.d("Shake",
-                    "x=${event.values[0]}" +
-                            "y=${event.values[1]}" +
-                            "z=${event.values[2]}")
-            /*Log.d("Direction",
-                    "dir=${direction}")*/
-            /*if (event.values[0] > maxX)
-                maxX = event.values[0]
-            if (event.values[1] > maxY)
-                maxY = event.values[1]
-            Log.d("max", "x=${maxX}" + "y=${maxY}")*/
-            //randompath.setImageDrawable(imageData)
-            /*} else {
-                //resources(getResources)はリーソースを取り扱うクラス
-                //getDrawableで指定した画像のDrawableインスタンスを取得
-                //val drawable = ResourcesCompat.getDrawable(resources,R.drawable.ok,null)
-                randompath.setImageDrawable(null)
-            }*/
         }
     }
 
@@ -323,15 +232,16 @@ private var n=0*/
     private fun randomImage(int: Int, direction: String): Drawable {
         //val typedArray = resources.obtainTypedArray(R.array.randomnumber)
         //val typedArray = resources.obtainTypedArray(R.array.segmentnumber)
-        //val typedArray = resources.obtainTypedArray(R.array.clearnumber)
+        //var typedArray = resources.obtainTypedArray(R.array.clearnumber_70)
+        //var typedArray = resources.obtainTypedArray(R.array.clearnumber_80)
         //val typedArray = resources.obtainTypedArray(R.array.colornumber)
         //val typedArray = resources.obtainTypedArray(R.array.greenc3number)
         //val typedArray = resources.obtainTypedArray(R.array.greenyellownumber)
-        //var typedArray = resources.obtainTypedArray(R.array.randomnumber)
-        var typedArray=resources.obtainTypedArray(R.array.randomnumber)
+        var typedArray = resources.obtainTypedArray(R.array.randomnumber)
         when (direction) {
             "x" -> {
                 typedArray = resources.obtainTypedArray(R.array.greenc3number)
+                //typedArray = resources.obtainTypedArray(R.array.clearnumber_70)
             }
             "y" -> {
                 //typedArray = resources.obtainTypedArray(R.array.greenyellownumber)
@@ -346,8 +256,6 @@ private var n=0*/
         val rand = Math.floor(Math.random() * 10).toInt()
         addNumber = rand
         val drawable = typedArray.getDrawable(rand)
-        //val drawable = typedArray.getDrawable(int)
-        // val drawable = typedArray.getDrawable(0)
         return drawable
     }
 

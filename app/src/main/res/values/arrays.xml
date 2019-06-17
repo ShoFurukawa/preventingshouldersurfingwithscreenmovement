@@ -45,44 +45,48 @@
         <item>@drawable/segment_9</item>
     </array>
 
-    <array name="clearnumber">
-        <item>@drawable/clear_0</item>
+    <array name="clearnumber_70">
+        <item>@drawable/clear_0_70</item>
 
-        <item>@drawable/clear_1</item>
+        <item>@drawable/clear_1_70</item>
 
-        <item>@drawable/clear_2</item>
+        <item>@drawable/clear_2_70</item>
 
-        <item>@drawable/clear_3</item>
+        <item>@drawable/clear_3_70</item>
 
-        <item>@drawable/clear_4</item>
+        <item>@drawable/clear_4_70</item>
 
-        <item>@drawable/clear_5</item>
+        <item>@drawable/clear_5_70</item>
 
-        <item>@drawable/clear_6</item>
+        <item>@drawable/clear_6_70</item>
 
-        <item>@drawable/clear_7</item>
+        <item>@drawable/clear_7_70</item>
 
-        <item>@drawable/clear_8</item>
+        <item>@drawable/clear_8_70</item>
 
-        <item>@drawable/clear_9</item>
+        <item>@drawable/clear_9_70</item>
     </array>
 
-    <array name="colornumber">
-        <item>@drawable/red_8</item>
+    <array name="clearnumber_80">
+        <item>@drawable/clear_0_80</item>
 
-        <item>@drawable/red_81</item>
+        <item>@drawable/clear_1_80</item>
 
-        <item>@drawable/red_82</item>
+        <item>@drawable/clear_2_80</item>
 
-        <item>@drawable/red_8_0</item>
+        <item>@drawable/clear_3_80</item>
 
-        <item>@drawable/red_8_1</item>
+        <item>@drawable/clear_4_80</item>
 
-        <item>@drawable/red_8_2</item>
+        <item>@drawable/clear_5_80</item>
 
-        <item>@drawable/red_8_3</item>
+        <item>@drawable/clear_6_80</item>
 
-        <item>@drawable/red_8_4</item>
+        <item>@drawable/clear_7_80</item>
+
+        <item>@drawable/clear_8_80</item>
+
+        <item>@drawable/clear_9_80</item>
     </array>
 
     <array name="greenyellownumber">
@@ -127,5 +131,27 @@
         <item>@drawable/green_c3_8</item>
 
         <item>@drawable/green_c3_9</item>
+    </array>
+
+    <array name="blacksegmentnumber">
+        <item>@drawable/segment_b_0</item>
+
+        <item>@drawable/segment_b_1</item>
+
+        <item>@drawable/segment_b_2</item>
+
+        <item>@drawable/segment_b_3</item>
+
+        <item>@drawable/segment_b_4</item>
+
+        <item>@drawable/segment_b_5</item>
+
+        <item>@drawable/segment_b_6</item>
+
+        <item>@drawable/segment_b_7</item>
+
+        <item>@drawable/segment_b_8</item>
+
+        <item>@drawable/segment_b_9</item>
     </array>
 </resources>

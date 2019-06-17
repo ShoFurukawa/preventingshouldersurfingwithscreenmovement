@@ -151,8 +151,10 @@ class AddPin : AppCompatActivity() {
     private var addNumber: Int = 0
     //ランダムな画像を表示させるための処理
     private fun randomImage() {
-        val typedArray = resources.obtainTypedArray(R.array.segmentnumber)
-        //val typedArray = resources.obtainTypedArray(R.array.cleranumber)
+        //val typedArray = resources.obtainTypedArray(R.array.segmentnumber)
+        //val typedArray = resources.obtainTypedArray(R.array.blacksegmentnumber)
+        val typedArray = resources.obtainTypedArray(R.array.clearnumber_70)
+        //val typedArray = resources.obtainTypedArray(R.array.clearnumber_80)
         val rand = Math.floor(Math.random() * 10).toInt()
         addNumber = rand
         val drawable = typedArray.getDrawable(rand)
